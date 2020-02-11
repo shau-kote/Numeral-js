@@ -354,9 +354,18 @@
          * finite precision.
          */
         multiplier: function (x) {
-            var parts = x.toString().split('.');
+            // var parts = x.toString().split('.');
+            //
+            // return parts.length < 2 ? 1 : Math.pow(10, parts[1].length);
+            var power = 0;
 
-            return parts.length < 2 ? 1 : Math.pow(10, parts[1].length);
+            while (x % 1 !== 0) {
+                x *= 10;
+                power += 1;
+            }
+
+            return Math.pow(10, power);
+
         },
         /**
          * Given a variable number of arguments, returns the maximum
